@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: sans-serif;
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #333333;
+  font-size: 1.2em;
+  line-height: 2rem;
+  color: #AAAAAA;
+}
+
+a {
+  text-decoration: none;
+  color: #D0D0D0;
+}
+
+a:hover {
+  color: tomato;
+}
+
+.dataTable tbody tr:nth-child(odd) {
+  background-color: #444444;
+}
+
+.tabs > ul {
+  list-style-type: none;
+  padding: 0;
+  border-bottom: 1px solid #AAAAAA;
+  font-size: 1.2em;
+}
+
+.tabs > ul li {
+  display: inline-block;
+  padding: 1em;
+  cursor: pointer;
+}
+
+.tabs > ul li + li {
+  margin-left: -1px;
+}
+
+.tabs > ul li.active {
+  background-color: #444444;
+}
