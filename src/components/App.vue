@@ -117,7 +117,7 @@ export default {
               user: data[0],
               openedMergeRequests: data[1],
               assignedMergeRequests: data[2],
-              assignedIssues: data[3]
+              assignedIssues: config.orphanIssues ? data[3] : data[3].filter(issue => issue.milestone)
             }
           };
         })
