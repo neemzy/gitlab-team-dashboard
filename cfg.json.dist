@@ -6,5 +6,6 @@
   "projectIds": [
   ],
   "labelsToExclude": "",
-  "orphanIssues": true
+  "orphanIssues": true,
+  "wipMergeRequests": true
 }

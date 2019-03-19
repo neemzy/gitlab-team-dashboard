@@ -22,6 +22,7 @@ Then edit `cfg.json` to suit your needs:
 - `projectIds`: by default, only group milestones are fetched; enable project milestones individually here
 - `labelsToExclude`: a regex to exclude issues bearing matching labels (leave blank to disable)
 - `orphanIssues`: whether to show issues not belonging to an active milestone on the Members tab
+- `wipMergeRequests`: whether to show "WIP" merge requests on the Members tab
 
 ## Develop
 

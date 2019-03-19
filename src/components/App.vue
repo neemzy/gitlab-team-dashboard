@@ -115,8 +115,8 @@ export default {
             ...this.users,
             [username]: {
               user: data[0],
-              openedMergeRequests: data[1],
-              assignedMergeRequests: data[2],
+              openedMergeRequests: config.wipMergeRequests ? data[1] : data[1].filter(mr => !mr.work_in_progress),
+              assignedMergeRequests: config.wipMergeRequests ? data[2] : data[2].filter(mr => !mr.work_in_progress),
               assignedIssues: config.orphanIssues ? data[3] : data[3].filter(issue => issue.milestone)
             }
           };
