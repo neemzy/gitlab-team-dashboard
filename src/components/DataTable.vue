@@ -9,6 +9,8 @@
         <th>Author</th>
         <th>Assignee(s)</th>
         <th v-if="labels">Label(s)</th>
+        <th v-if="upvotes">Upvote(s)</th>
+        <th v-if="approvals">Approval(s)</th>
         <th>Comment(s)</th>
       </tr>
     </thead>
@@ -30,6 +32,8 @@
             <li v-for="(label, index) in datum.labels" :key="index">{{ label }}</li>
           </ul>
         </td>
+        <td v-if="upvotes">{{ datum.upvotes }}</td>
+        <td v-if="approvals">{{ datum.approvalCount }}<span v-if="datum.approvalGoal > 0">/{{ datum.approvalGoal }}</span></td>
         <td>{{ datum.user_notes_count }}</td>
       </tr>
     </tbody>
@@ -47,6 +51,14 @@ export default {
       default: () => []
     },
     labels: {
+      type: Boolean,
+      default: false
+    },
+    upvotes: {
+      type: Boolean,
+      default: false
+    },
+    approvals: {
       type: Boolean,
       default: false
     }

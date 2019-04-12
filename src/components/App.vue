@@ -7,11 +7,11 @@
           <h2><User :user="data.user" /></h2>
           <div class="subsection" v-if="data.openedMergeRequests.length">
             <h3>Opened MRs ({{ data.openedMergeRequests.length }})</h3>
-            <DataTable :data="data.openedMergeRequests" />
+            <DataTable :data="data.openedMergeRequests" upvotes approvals />
           </div>
           <div class="subsection" v-if="data.assignedMergeRequests.length">
             <h3>Assigned MRs ({{ data.assignedMergeRequests.length }})</h3>
-            <DataTable :data="data.assignedMergeRequests" />
+            <DataTable :data="data.assignedMergeRequests" upvotes approvals />
           </div>
           <div class="subsection" v-if="data.assignedIssues.length">
             <h3>Assigned issues ({{ data.assignedIssues.length }})</h3>
@@ -114,15 +114,10 @@ export default {
           fetchAssignedMergeRequests(user.id),
           fetchAssignedIssues(user.id)
         ]))
-        .then(data => {
+        .then(([user, openedMergeRequests, assignedMergeRequests, assignedIssues]) => {
           this.users = {
             ...this.users,
-            [username]: {
-              user: data[0],
-              openedMergeRequests: config.wipMergeRequests ? data[1] : data[1].filter(mr => !mr.work_in_progress),
-              assignedMergeRequests: config.wipMergeRequests ? data[2] : data[2].filter(mr => !mr.work_in_progress),
-              assignedIssues: config.orphanIssues ? data[3] : data[3].filter(issue => issue.milestone)
-            }
+            [username]: { user, openedMergeRequests, assignedMergeRequests, assignedIssues }
           };
         })
         .catch(console.error);
