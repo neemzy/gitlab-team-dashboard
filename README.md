@@ -16,13 +16,14 @@ $ cp cfg.json.dist cfg.json
 
 Then edit `cfg.json` to suit your needs:
 
-- `baseURL`: Gitlab instance FQDN (without a trailing slash)
+- `baseURL`: Gitlab instance host (without a trailing slash, e.g. `https://example.com`)
 - `token`: Gitlab token - you need to get one from your user account
 - `usernames`: names of users you want to fetch data for
 - `projectIds`: by default, only group milestones are fetched; enable project milestones individually here
 - `labelsToExclude`: a regex to exclude issues bearing matching labels (leave blank to disable)
 - `orphanIssues`: whether to show issues not belonging to an active milestone on the Members tab
 - `wipMergeRequests`: whether to show "WIP" merge requests on the Members tab
+- `logoURL`: URL of the logo displayed at the top (defaults to a Gitlab logo)
 
 ## Develop
 

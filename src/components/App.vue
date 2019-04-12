@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <h1>Gitlab team dashboard</h1>
+    <h1 class="title"><img :src="logoURL" class="logo" alt="Gitlab team dashboard" /></h1>
     <Tabs class="tabs">
       <Tab title="Members" active>
         <div class="section" v-for="data in sortedUsers" :key="data.user.id">
@@ -92,6 +92,10 @@ export default {
             ? -1
             : parseInt(a.milestone.due_date.split("-").join("")) - parseInt(b.milestone.due_date.split("-").join(""))
         );
+    },
+
+    logoURL() {
+      return config.logoURL || "";
     }
   },
   methods: {
@@ -138,6 +142,15 @@ export default {
 <style scoped>
 .app {
   padding: 3rem;
+}
+
+.title {
+  margin: 0;
+}
+
+.logo {
+  max-width: 250px;
+  max-height: 125px;
 }
 
 .section {
