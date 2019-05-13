@@ -10,7 +10,7 @@
     "local": "npm run build && sed -i '' 's_/static_static_g' dist/index.html"
   },
   "dependencies": {
-    "gitlab-fetcher": "^0.2.1",
+    "gitlab-fetcher": "^0.2.3",
     "vue": "^2.5.17",
     "vue-simple-tabs": "^1.4.2"
   },
