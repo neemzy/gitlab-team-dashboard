@@ -8,5 +8,6 @@
   "labelsToExclude": "",
   "orphanIssues": true,
   "wipMergeRequests": true,
+  "selfAssignedMergeRequests": true,
   "logoURL": "https://about.gitlab.com/images/press/logo/png/gitlab-logo-white-rgb.png"
 }

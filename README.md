@@ -23,6 +23,7 @@ Then edit `cfg.json` to suit your needs:
 - `labelsToExclude`: a regex to exclude issues bearing matching labels (leave blank to disable)
 - `orphanIssues`: whether to show issues not belonging to an active milestone on the Members tab
 - `wipMergeRequests`: whether to show "WIP" merge requests on the Members tab
+- `selfAssignedMergeRequests`: whether to show self-opened merge requests in the "assigned MRs" section
 - `logoURL`: URL of the logo displayed at the top (defaults to a Gitlab logo)
 
 ## Develop

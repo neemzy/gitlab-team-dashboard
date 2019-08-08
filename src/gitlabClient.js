@@ -12,10 +12,10 @@ function callAPI(url, payload) {
   return callGitlab(config.token, apiURL + url, payload);
 }
 
-function formatMergeRequests(mrs) {
+function formatMergeRequests(mrs, excludeSelf = false) {
   return mrs
-    // Remove WIP MRs if relevant
-    .then(mrs => mrs.filter(mr => config.wipMergeRequests || !mr.work_in_progress))
+    // Remove WIP and/or self-assigned MRs if relevant
+    .then(mrs => mrs.filter(mr => (config.wipMergeRequests || !mr.work_in_progress) && (!excludeSelf || mr.assignee.id !== mr.author.id)))
     // Fetch, aggregate and format approval data
     .then(mrs => Promise.all([
       mrs,
@@ -67,7 +67,7 @@ function fetchAssignedMergeRequests(userId) {
     scope: "all",
     state: "opened",
     "assignee_id": userId
-  }));
+  }), !config.selfAssignedMergeRequests);
 }
 
 function fetchAssignedIssues(userId) {
