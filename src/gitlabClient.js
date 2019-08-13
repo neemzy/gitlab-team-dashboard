@@ -33,10 +33,11 @@ function formatMergeRequests(mrs, excludeSelf = false) {
     })));
 }
 
-function formatIssues(issues) {
+function formatIssues(issues, excludeSelf = false) {
   return issues
-    // Remove orphan issues if relevant (and exclude some by label as well)
+    // Remove orphan and/or self-assigned issues if relevant (and exclude some by label as well)
     .then(issues => issues.filter(issue => (config.orphanIssues || issue.milestone)
+      && (!excludeSelf || !issue.assignees.find(({ id }) => id === issue.author.id))
       && (!config.labelsToExclude || issue.labels.reduce((result, label) => result && !label.match(labelRE), true))
     ));
 }
@@ -91,7 +92,7 @@ function fetchAssignedIssues(userId) {
     scope: "all",
     state: "opened",
     "assignee_id": userId
-  }));
+  }), !config.selfAssignedIssues);
 }
 
 export {
