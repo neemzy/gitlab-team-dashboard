@@ -4,7 +4,7 @@ Gitlab dashboard for team activity tracking
 
 Two tabs:
 
-- **Members**: opened MRs, assigned MRs, and assigned issues per user
+- **Members**: opened MRs, assigned MRs, opened issues, and assigned issues per user
 - **Issues**: assigned issues for the whole team per milestone - issues not belonging to an active milestone are ignored, milestones are sorted by ascending due date
 
 ## Setup

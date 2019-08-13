@@ -33,6 +33,14 @@ function formatMergeRequests(mrs, excludeSelf = false) {
     })));
 }
 
+function formatIssues(issues) {
+  return issues
+    // Remove orphan issues if relevant (and exclude some by label as well)
+    .then(issues => issues.filter(issue => (config.orphanIssues || issue.milestone)
+      && (!config.labelsToExclude || issue.labels.reduce((result, label) => result && !label.match(labelRE), true))
+    ));
+}
+
 function fetchMilestones() {
   return fetchAllPagesFromAPI("/groups")
     .then(groups => Promise.all(
@@ -70,12 +78,27 @@ function fetchAssignedMergeRequests(userId) {
   }), !config.selfAssignedMergeRequests);
 }
 
-function fetchAssignedIssues(userId) {
-  return fetchAllPagesFromAPI("/issues", { scope: "all", state: "opened", "assignee_id": userId })
-    // Remove orphan issues if relevant (and exclude some by label as well)
-    .then(issues => issues.filter(issue => (config.orphanIssues || issue.milestone)
-      && (!config.labelsToExclude || issue.labels.reduce((result, label) => result && !label.match(labelRE), true))
-    ));
+function fetchOpenedIssues(userId) {
+  return formatIssues(fetchAllPagesFromAPI("/issues", {
+    scope: "all",
+    state: "opened",
+    "author_id": userId
+  }));
 }
 
-export { fetchMilestones, fetchUser, fetchOpenedMergeRequests, fetchAssignedMergeRequests, fetchAssignedIssues };
+function fetchAssignedIssues(userId) {
+  return formatIssues(fetchAllPagesFromAPI("/issues", {
+    scope: "all",
+    state: "opened",
+    "assignee_id": userId
+  }));
+}
+
+export {
+  fetchMilestones,
+  fetchUser,
+  fetchOpenedMergeRequests,
+  fetchAssignedMergeRequests,
+  fetchOpenedIssues,
+  fetchAssignedIssues
+};

@@ -13,6 +13,10 @@
             <h3>Assigned MRs ({{ data.assignedMergeRequests.length }})</h3>
             <DataTable :data="data.assignedMergeRequests" upvotes approvals />
           </div>
+          <div class="subsection" v-if="data.openedIssues.length">
+            <h3>Opened issues ({{ data.openedIssues.length }})</h3>
+            <DataTable :data="data.openedIssues" labels />
+          </div>
           <div class="subsection" v-if="data.assignedIssues.length">
             <h3>Assigned issues ({{ data.assignedIssues.length }})</h3>
             <DataTable :data="data.assignedIssues" labels />
@@ -43,6 +47,7 @@ import {
   fetchUser,
   fetchOpenedMergeRequests,
   fetchAssignedMergeRequests,
+  fetchOpenedIssues,
   fetchAssignedIssues
 } from "../gitlabClient";
 import User from "./User";
@@ -112,12 +117,13 @@ export default {
           user,
           fetchOpenedMergeRequests(user.id),
           fetchAssignedMergeRequests(user.id),
+          fetchOpenedIssues(user.id),
           fetchAssignedIssues(user.id)
         ]))
-        .then(([user, openedMergeRequests, assignedMergeRequests, assignedIssues]) => {
+        .then(([user, openedMergeRequests, assignedMergeRequests, openedIssues, assignedIssues]) => {
           this.users = {
             ...this.users,
-            [username]: { user, openedMergeRequests, assignedMergeRequests, assignedIssues }
+            [username]: { user, openedMergeRequests, assignedMergeRequests, openedIssues, assignedIssues }
           };
         })
         .catch(console.error);
