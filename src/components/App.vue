@@ -91,6 +91,7 @@ export default {
           milestone,
           issues: this.issuesForMilestones.filter(issue => issue.milestone.id === milestone.id)
         }))
+        .filter(milestone => milestone.issues.length > 0)
         .sort((a, b) => a.milestone.due_date === null
           ? 1
           : b.milestone.due_date === null
