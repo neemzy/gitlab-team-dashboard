@@ -1,7 +1,7 @@
 import { fetchGitlab, callGitlab } from "gitlab-fetcher";
 import config from "../cfg";
 
-const apiURL = config.baseURL + "/api/v4";
+const apiURL = config.baseURL.replace(/\/$/, "") + "/api/v4";
 const labelRE = new RegExp(config.labelsToExclude);
 
 function fetchAllPagesFromAPI(url, payload) {
