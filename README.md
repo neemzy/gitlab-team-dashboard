@@ -16,7 +16,7 @@ $ cp cfg.json.dist cfg.json
 
 Then edit `cfg.json` to suit your needs:
 
-- `baseURL`: Gitlab instance host (without a trailing slash, e.g. `https://example.com`)
+- `baseURL`: Gitlab instance host
 - `token`: Gitlab token - you need to get one from your user account
 - `usernames`: names of users you want to fetch data for
 - `projectIds`: by default, only group milestones are fetched; enable project milestones individually here
